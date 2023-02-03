@@ -3,9 +3,11 @@ on:
     pull_request:
 
 jobs:
-    build:
+    build-and-deploy:
         runs-on: ubuntu-latest
-
+        permissions:
+            contents: read
+            deployments: write
         steps:
             - uses: actions/checkout@v3
             - name: Use Node.js ${{ matrix.node-version }}
@@ -16,3 +18,11 @@ jobs:
             - run: npm ci
             - run: npm run ci-build
             - run: npm run build
+            - name: Publish
+              uses: cloudflare/pages-action@1
+              with:
+                  apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+                  accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+                  projectName: pomodoro
+                  directory: dist
+                  gitHubToken: ${{ secrets.GITHUB_TOKEN }}
