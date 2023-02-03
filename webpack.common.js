@@ -29,7 +29,7 @@ module.exports = {
             title: '🍅 Pomodoro Timer',
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].[hash].css',
+            filename: '[name].[contenthash].css',
         }),
     ],
     output: {
