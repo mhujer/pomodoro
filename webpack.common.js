@@ -26,7 +26,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Pomodoro Timer',
+            title: '🍅 Pomodoro Timer',
         }),
         new MiniCssExtractPlugin({
             filename: '[name].[hash].css',

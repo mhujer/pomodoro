@@ -1,5 +1,31 @@
-$body-color: red;
+html {
+    // from https://www.typescriptlang.org/
+    --code-font: 'Cascadia Mono-SemiLight', Menlo, Monaco, Consolas, monospace;
+    --body-font: 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue',
+        sans-serif;
+    --text-color: #333;
+    --background-color: #faf9f8;
+
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--body-font);
+    font-size: 16px;
+    line-height: 1.4;
+}
 
 body {
-    color: $body-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.countdown {
+    font-weight: bold;
+    font-size: 200%;
+}
+
+button {
+    font-size: 150%;
+    padding: 1em;
 }
