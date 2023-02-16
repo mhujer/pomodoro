@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders finished and void pomodoros 1`] = `
+<ul>
+  <li>
+    <em>
+      2023-02-18 15:00:00
+    </em>
+    : duration 
+    <strong>
+      05:11
+    </strong>
+  </li>
+  <li>
+    <em>
+      2023-02-18 15:10:00
+    </em>
+    : duration 
+    <strong>
+      25:00
+    </strong>
+  </li>
+</ul>
+`;
+
+exports[`renders for 1 pomodoro 1`] = `
+<ul>
+  <li>
+    <em>
+      2023-02-18 15:00:00
+    </em>
+    : duration 
+    <strong>
+      25:00
+    </strong>
+  </li>
+</ul>
+`;
+
+exports[`renders for no pomodoros 1`] = `null`;

@@ -16,7 +16,7 @@ jobs:
                   node-version: 18.x
                   cache: 'npm'
             - run: npm ci
-            - run: npm run ci-build
+            #- run: npm run ci-build
             - run: npm run build
             - name: Publish
               uses: cloudflare/pages-action@1
@@ -24,5 +24,5 @@ jobs:
                   apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
                   accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
                   projectName: pomodoro
-                  directory: dist
+                  directory: build
                   gitHubToken: ${{ secrets.GITHUB_TOKEN }}
