@@ -40,7 +40,7 @@ export class PomodoroTimer {
 
         const elapsedSeconds = (this._latestNow - this._startTime) / 1000;
 
-        if (elapsedSeconds >= POMODORO_DURATION_SECONDS) {
+        if (elapsedSeconds >= this.defaultPomodoroDurationSeconds) {
             this._pastPomodoros.push({
                 startTime: this._startTime,
                 endTime: this._latestNow,
@@ -72,7 +72,7 @@ export class PomodoroTimer {
         }
 
         const elapsedSeconds = (this._latestNow - this._startTime) / 1000;
-        return POMODORO_DURATION_SECONDS - elapsedSeconds;
+        return this.defaultPomodoroDurationSeconds - elapsedSeconds;
     }
 
     get pastPomodoros(): PastPomodoro[] {
