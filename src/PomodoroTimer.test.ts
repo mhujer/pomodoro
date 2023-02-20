@@ -1,6 +1,6 @@
 import { PomodoroTimer } from './PomodoroTimer';
 
-describe('PomodoroTImer', () => {
+describe('PomodoroTimer', () => {
     beforeEach(() => {
         jest.useFakeTimers();
     });
@@ -10,7 +10,7 @@ describe('PomodoroTImer', () => {
     });
 
     test('PomodoroTimer flow', () => {
-        jest.setSystemTime(new Date('2023-02-18 10:00:00'));
+        jest.setSystemTime(new Date('2023-02-18 10:00:00 UTC'));
 
         const pomodoroTimer = new PomodoroTimer(10);
         expect(pomodoroTimer.isPomodoroActive()).toBe(false);
@@ -22,43 +22,43 @@ describe('PomodoroTImer', () => {
         pomodoroTimer.startTimer();
         expect(pomodoroTimer.isPomodoroActive()).toBe(true);
         expect(pomodoroTimer.getRemainingSeconds()).toBe(10);
-        expect(pomodoroTimer.startTime).toBe(1676710800000);
+        expect(pomodoroTimer.startTime).toBe(1676714400000);
 
-        jest.setSystemTime(new Date('2023-02-18 10:00:04'));
+        jest.setSystemTime(new Date('2023-02-18 10:00:04 UTC'));
         pomodoroTimer.tick();
         expect(pomodoroTimer.isPomodoroActive()).toBe(true);
         expect(pomodoroTimer.getRemainingSeconds()).toBe(6);
 
-        jest.setSystemTime(new Date('2023-02-18 10:00:10'));
+        jest.setSystemTime(new Date('2023-02-18 10:00:10 UTC'));
         pomodoroTimer.tick();
         expect(pomodoroTimer.isPomodoroActive()).toBe(false);
         expect(pomodoroTimer.getRemainingSeconds()).toBeNull();
         expect(pomodoroTimer.pastPomodoros).toEqual([
-            { startTime: 1676710800000, endTime: 1676710810000, didFinish: true },
+            { startTime: 1676714400000, endTime: 1676714410000, didFinish: true },
         ]);
 
         // another pomodoro
         pomodoroTimer.startTimer();
         expect(pomodoroTimer.isPomodoroActive()).toBe(true);
         expect(pomodoroTimer.getRemainingSeconds()).toBe(10);
-        expect(pomodoroTimer.startTime).toBe(1676710810000);
+        expect(pomodoroTimer.startTime).toBe(1676714410000);
 
-        jest.setSystemTime(new Date('2023-02-18 10:00:20'));
+        jest.setSystemTime(new Date('2023-02-18 10:00:20 UTC'));
         pomodoroTimer.tick();
         expect(pomodoroTimer.isPomodoroActive()).toBe(false);
         expect(pomodoroTimer.getRemainingSeconds()).toBeNull();
         expect(pomodoroTimer.pastPomodoros).toEqual([
-            { startTime: 1676710800000, endTime: 1676710810000, didFinish: true },
-            { startTime: 1676710810000, endTime: 1676710820000, didFinish: true },
+            { startTime: 1676714400000, endTime: 1676714410000, didFinish: true },
+            { startTime: 1676714410000, endTime: 1676714420000, didFinish: true },
         ]);
 
         // pomodoro can be stopped
         pomodoroTimer.startTimer();
         expect(pomodoroTimer.isPomodoroActive()).toBe(true);
         expect(pomodoroTimer.getRemainingSeconds()).toBe(10);
-        expect(pomodoroTimer.startTime).toBe(1676710820000);
+        expect(pomodoroTimer.startTime).toBe(1676714420000);
 
-        jest.setSystemTime(new Date('2023-02-18 10:00:23'));
+        jest.setSystemTime(new Date('2023-02-18 10:00:23 UTC'));
         pomodoroTimer.tick();
         expect(pomodoroTimer.isPomodoroActive()).toBe(true);
         expect(pomodoroTimer.getRemainingSeconds()).toBe(7);
@@ -67,9 +67,9 @@ describe('PomodoroTImer', () => {
         expect(pomodoroTimer.isPomodoroActive()).toBe(false);
         expect(pomodoroTimer.getRemainingSeconds()).toBeNull();
         expect(pomodoroTimer.pastPomodoros).toEqual([
-            { startTime: 1676710800000, endTime: 1676710810000, didFinish: true },
-            { startTime: 1676710810000, endTime: 1676710820000, didFinish: true },
-            { startTime: 1676710820000, endTime: 1676710823000, didFinish: false },
+            { startTime: 1676714400000, endTime: 1676714410000, didFinish: true },
+            { startTime: 1676714410000, endTime: 1676714420000, didFinish: true },
+            { startTime: 1676714420000, endTime: 1676714423000, didFinish: false },
         ]);
     });
 

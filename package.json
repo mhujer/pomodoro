@@ -21,7 +21,7 @@
     },
     "scripts": {
         "eslint": "eslint src --max-warnings 0",
-        "ci-build": "eslint src --max-warnings 0",
+        "ci-build": "eslint src --max-warnings 0 && react-scripts test --watchAll=false",
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
