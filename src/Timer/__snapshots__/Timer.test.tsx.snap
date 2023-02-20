@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders timer for 0 seconds 1`] = `
+<p
+  className="countdown"
+>
+  00:00
+</p>
+`;
+
+exports[`renders timer for 60 seconds 1`] = `
+<p
+  className="countdown"
+>
+  01:00
+</p>
+`;
+
+exports[`renders timer for 1500 seconds (25 min) 1`] = `
+<p
+  className="countdown"
+>
+  25:00
+</p>
+`;
