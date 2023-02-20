@@ -5,6 +5,7 @@ import Timer from './Timer/Timer';
 import { formatPomodoroTime } from './timeFormatUtils';
 import { PastPomodoro, PomodoroTimer } from './PomodoroTimer';
 import { PastPomodoros } from './PastPomodoros/PastPomodoros';
+import StartStopButton from './StartStopButton/StartStopButton';
 
 const defaultTitle = document.title;
 
@@ -67,7 +68,7 @@ function App() {
         <div className="container">
             <Timer remainingSeconds={remainingSeconds} />
 
-            <button onClick={handleStart}>Start!</button>
+            <StartStopButton handleButtonClick={handleStart}/>
 
             <PastPomodoros pastPomodoros={pastPomodoros} />
         </div>

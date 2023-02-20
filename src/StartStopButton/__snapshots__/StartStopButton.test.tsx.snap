@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderes and matches snapshot 1`] = `
+<button
+  onClick={[MockFunction]}
+>
+  Start!
+</button>
+`;
