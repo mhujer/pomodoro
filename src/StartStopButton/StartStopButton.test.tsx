@@ -1,4 +1,3 @@
-import React from 'react';
 import StartStopButton from './StartStopButton';
 import { fireEvent, render, screen } from '@testing-library/react';
 import renderer from 'react-test-renderer';

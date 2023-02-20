@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.scss';
 import ding from '../src/sounds/ding.mp3'; // https://freesound.org/people/domrodrig/sounds/116779/
 import Timer from './Timer/Timer';
@@ -10,8 +10,10 @@ import StartStopButton from './StartStopButton/StartStopButton';
 const defaultTitle = document.title;
 
 function App() {
+    // @ts-ignore
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [startTime, setStartTime] = useState<number | null>(null);
+    // @ts-ignore
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [now, setNow] = useState<number | null>(null);
     const [pastPomodoros, setPastPomodoros] = useState<PastPomodoro[]>([]);

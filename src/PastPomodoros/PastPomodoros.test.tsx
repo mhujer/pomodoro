@@ -1,4 +1,3 @@
-import React from 'react';
 import { PastPomodoros } from './PastPomodoros';
 import renderer from 'react-test-renderer';
 import { PastPomodoro } from '../PomodoroTimer';
