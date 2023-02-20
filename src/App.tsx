@@ -20,7 +20,7 @@ function App() {
     const pomodoroTimerRef = useRef<PomodoroTimer>(new PomodoroTimer());
     const pomodoroTimer = pomodoroTimerRef.current;
 
-    function handleStart() {
+    function handleStart(): void {
         pomodoroTimer.startTimer();
 
         setStartTime(pomodoroTimer.startTime);
@@ -50,6 +50,18 @@ function App() {
         }, 100);
     }
 
+    function handleStop(): void {
+        pomodoroTimer.stopTimer();
+
+        if (intervalRef.current !== null) {
+            clearInterval(intervalRef.current);
+        }
+
+        setStartTime(pomodoroTimer.startTime);
+        setNow(pomodoroTimer.latestNow);
+        setPastPomodoros(pomodoroTimer.pastPomodoros);
+    }
+
     let remainingSeconds = pomodoroTimer.getRemainingSeconds();
     let title: string;
     if (remainingSeconds !== null) {
@@ -65,10 +77,14 @@ function App() {
     }, [title]);
 
     return (
-        <div className="container">
+        <div className='container'>
             <Timer remainingSeconds={remainingSeconds} />
 
-            <StartStopButton handleButtonClick={handleStart}/>
+            <StartStopButton
+                isPomodoroActive={pomodoroTimer.isPomodoroActive()}
+                handleStart={handleStart}
+                handleStop={handleStop}
+            />
 
             <PastPomodoros pastPomodoros={pastPomodoros} />
         </div>

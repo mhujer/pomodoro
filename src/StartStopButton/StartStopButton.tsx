@@ -1,17 +1,18 @@
 import React from 'react';
 
 type Props = {
-    handleButtonClick: () => void;
+    isPomodoroActive: boolean;
+    handleStart: () => void;
+    handleStop: () => void;
 }
 
-const StartStopButton: React.FC<Props> = ({ handleButtonClick }) => {
+const StartStopButton: React.FC<Props> = ({ isPomodoroActive, handleStart, handleStop }) => {
 
-    return (
-        <>
-            <button onClick={handleButtonClick}>Start!</button>
-        </>
-    );
-
+    if (isPomodoroActive) {
+        return <button onClick={handleStop}>Stop!</button>;
+    } else {
+        return <button onClick={handleStart}>Start!</button>;
+    }
 };
 
 export default StartStopButton;

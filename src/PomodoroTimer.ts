@@ -31,6 +31,19 @@ export class PomodoroTimer {
         this._latestNow = Date.now();
     }
 
+    stopTimer() {
+        if (this._startTime === null) {
+            throw new Error('!');
+        }
+        this._latestNow = Date.now();
+
+        this._pastPomodoros.push({
+            startTime: this._startTime,
+            endTime: this._latestNow,
+        });
+        this._startTime = null;
+    }
+
     tick() {
         if (this._startTime === null) {
             throw new Error('!');
