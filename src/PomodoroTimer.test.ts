@@ -17,7 +17,7 @@ describe('PomodoroTImer', () => {
         expect(pomodoroTimer.getRemainingSeconds()).toBeNull();
         expect(pomodoroTimer.startTime).toBeNull();
         expect(pomodoroTimer.getDefaultPomodoroDurationSeconds()).toBe(10);
-        expect(pomodoroTimer.pastPomodoros).toMatchObject([]);
+        expect(pomodoroTimer.pastPomodoros).toEqual([]);
 
         pomodoroTimer.startTimer();
         expect(pomodoroTimer.isPomodoroActive()).toBe(true);
@@ -33,8 +33,8 @@ describe('PomodoroTImer', () => {
         pomodoroTimer.tick();
         expect(pomodoroTimer.isPomodoroActive()).toBe(false);
         expect(pomodoroTimer.getRemainingSeconds()).toBeNull();
-        expect(pomodoroTimer.pastPomodoros).toMatchObject([
-            { startTime: 1676710800000, endTime: 1676710810000 },
+        expect(pomodoroTimer.pastPomodoros).toEqual([
+            { startTime: 1676710800000, endTime: 1676710810000, didFinish: true },
         ]);
 
         // another pomodoro
@@ -47,9 +47,9 @@ describe('PomodoroTImer', () => {
         pomodoroTimer.tick();
         expect(pomodoroTimer.isPomodoroActive()).toBe(false);
         expect(pomodoroTimer.getRemainingSeconds()).toBeNull();
-        expect(pomodoroTimer.pastPomodoros).toMatchObject([
-            { startTime: 1676710800000, endTime: 1676710810000 },
-            { startTime: 1676710810000, endTime: 1676710820000 },
+        expect(pomodoroTimer.pastPomodoros).toEqual([
+            { startTime: 1676710800000, endTime: 1676710810000, didFinish: true },
+            { startTime: 1676710810000, endTime: 1676710820000, didFinish: true },
         ]);
 
         // pomodoro can be stopped
@@ -66,10 +66,10 @@ describe('PomodoroTImer', () => {
         pomodoroTimer.stopTimer();
         expect(pomodoroTimer.isPomodoroActive()).toBe(false);
         expect(pomodoroTimer.getRemainingSeconds()).toBeNull();
-        expect(pomodoroTimer.pastPomodoros).toMatchObject([
-            { startTime: 1676710800000, endTime: 1676710810000 },
-            { startTime: 1676710810000, endTime: 1676710820000 },
-            { startTime: 1676710820000, endTime: 1676710823000 },
+        expect(pomodoroTimer.pastPomodoros).toEqual([
+            { startTime: 1676710800000, endTime: 1676710810000, didFinish: true },
+            { startTime: 1676710810000, endTime: 1676710820000, didFinish: true },
+            { startTime: 1676710820000, endTime: 1676710823000, didFinish: false },
         ]);
     });
 

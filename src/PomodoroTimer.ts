@@ -1,6 +1,7 @@
 export interface PastPomodoro {
     startTime: number;
     endTime: number;
+    didFinish: boolean;
 }
 
 let POMODORO_DURATION_SECONDS: number;
@@ -20,13 +21,17 @@ export class PomodoroTimer {
     private defaultPomodoroDurationSeconds;
 
     constructor(
-        defaultPomodoroDurationSeconds = POMODORO_DURATION_SECONDS
+        defaultPomodoroDurationSeconds = POMODORO_DURATION_SECONDS,
     ) {
         this.defaultPomodoroDurationSeconds = defaultPomodoroDurationSeconds;
         this._latestNow = Date.now();
     }
 
     startTimer() {
+        if (this._startTime !== null) {
+            throw new Error('Cannot start another pomodoro when one is already running!');
+        }
+
         this._startTime = Date.now();
         this._latestNow = Date.now();
     }
@@ -40,6 +45,7 @@ export class PomodoroTimer {
         this._pastPomodoros.push({
             startTime: this._startTime,
             endTime: this._latestNow,
+            didFinish: false,
         });
         this._startTime = null;
     }
@@ -57,6 +63,7 @@ export class PomodoroTimer {
             this._pastPomodoros.push({
                 startTime: this._startTime,
                 endTime: this._latestNow,
+                didFinish: true,
             });
             this._startTime = null;
         }
@@ -75,7 +82,7 @@ export class PomodoroTimer {
         return this._startTime !== null;
     }
 
-    getRemainingSeconds(): number|null {
+    getRemainingSeconds(): number | null {
         if (!this.isPomodoroActive()) {
             return null;
         }

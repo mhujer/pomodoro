@@ -9,6 +9,8 @@ exports[`renders finished and void pomodoros 1`] = `
     : duration 
     <strong>
       25:00
+       
+      ✅
     </strong>
   </li>
   <li>
@@ -18,6 +20,8 @@ exports[`renders finished and void pomodoros 1`] = `
     : duration 
     <strong>
       05:11
+       
+      ❌
     </strong>
   </li>
 </ul>
@@ -32,6 +36,8 @@ exports[`renders for 1 pomodoro 1`] = `
     : duration 
     <strong>
       25:00
+       
+      ✅
     </strong>
   </li>
 </ul>

@@ -12,8 +12,6 @@ export const PastPomodoros: React.FC<Props> = ({ pastPomodoros }) => {
         return null;
     }
 
-    // @todo ✅ / ❌
-
     // @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description
     pastPomodoros.sort((a, b) => {
         return b.startTime - a.startTime;
@@ -25,7 +23,7 @@ export const PastPomodoros: React.FC<Props> = ({ pastPomodoros }) => {
 
         return (
             <li key={pastPomodoro.startTime}>
-                <em>{startDateFormatted}</em>: duration <strong>{duration}</strong>
+                <em>{startDateFormatted}</em>: duration <strong>{duration} {pastPomodoro.didFinish ? '✅' : '❌'}</strong>
             </li>
         );
     });

@@ -13,6 +13,7 @@ it('renders for 1 pomodoro', () => {
         {
             startTime: new Date('2023-02-18 15:00:00').getTime(),
             endTime: new Date('2023-02-18 15:25:00').getTime(),
+            didFinish: true,
         },
     ];
 
@@ -25,10 +26,12 @@ it('renders finished and void pomodoros', () => {
         {
             startTime: new Date('2023-02-18 15:00:00').getTime(),
             endTime: new Date('2023-02-18 15:05:11').getTime(),
+            didFinish: false,
         },
         {
             startTime: new Date('2023-02-18 15:10:00').getTime(),
             endTime: new Date('2023-02-18 15:35:00').getTime(),
+            didFinish: true,
         },
     ];
 

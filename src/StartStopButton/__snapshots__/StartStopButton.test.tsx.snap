@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderes isPomodoroActive=false 1`] = `
+exports[`StartStopButton renderes isPomodoroActive=false 1`] = `
 <button
   onClick={[MockFunction]}
 >
@@ -8,7 +8,7 @@ exports[`renderes isPomodoroActive=false 1`] = `
 </button>
 `;
 
-exports[`renderes isPomodoroActive=true 1`] = `
+exports[`StartStopButton renderes isPomodoroActive=true 1`] = `
 <button
   onClick={[MockFunction]}
 >
