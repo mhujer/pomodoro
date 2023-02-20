@@ -3,7 +3,7 @@ import { formatPomodoroTime } from '../timeFormatUtils';
 import { lightFormat } from 'date-fns';
 import { PastPomodoro } from '../PomodoroTimer';
 
-type Props = {
+interface Props {
     pastPomodoros: PastPomodoro[]
 }
 export const PastPomodoros: React.FC<Props> = ({ pastPomodoros }) => {

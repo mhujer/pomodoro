@@ -10,10 +10,10 @@ import StartStopButton from './StartStopButton/StartStopButton';
 const defaultTitle = document.title;
 
 function App() {
-    // @ts-ignore
+    // @ts-expect-error startTime state is required to trigger rerender
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [startTime, setStartTime] = useState<number | null>(null);
-    // @ts-ignore
+    // @ts-expect-error now state is required to trigger rerender
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [now, setNow] = useState<number | null>(null);
     const [pastPomodoros, setPastPomodoros] = useState<PastPomodoro[]>([]);
@@ -31,6 +31,7 @@ function App() {
         if (intervalRef.current !== null) {
             clearInterval(intervalRef.current);
         }
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         intervalRef.current = window.setInterval(async () => {
             pomodoroTimer.tick();
 

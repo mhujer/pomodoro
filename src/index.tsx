@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
+    document.getElementById('root') as HTMLElement,
 );
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
 );

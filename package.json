@@ -20,16 +20,12 @@
         "typescript": "^4.9.5"
     },
     "scripts": {
+        "eslint": "eslint src --max-warnings 0",
+        "ci-build": "eslint src --max-warnings 0",
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
     },
     "browserslist": {
         "production": [

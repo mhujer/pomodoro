@@ -1,7 +1,7 @@
 import React from 'react';
 import { formatPomodoroTime } from '../timeFormatUtils';
 
-type Props = {
+interface Props {
     remainingSeconds: number;
 }
 

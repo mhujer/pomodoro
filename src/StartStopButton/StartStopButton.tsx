@@ -1,6 +1,6 @@
 import React from 'react';
 
-type Props = {
+interface Props {
     isPomodoroActive: boolean;
     handleStart: () => void;
     handleStop: () => void;
