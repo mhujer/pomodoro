@@ -4,8 +4,9 @@ import { lightFormat } from 'date-fns';
 import { PastPomodoro } from '../PomodoroTimer';
 
 interface Props {
-    pastPomodoros: PastPomodoro[]
+    pastPomodoros: PastPomodoro[];
 }
+
 export const PastPomodoros: React.FC<Props> = ({ pastPomodoros }) => {
     // no pomodoros
     if (pastPomodoros.length === 0) {
@@ -23,14 +24,13 @@ export const PastPomodoros: React.FC<Props> = ({ pastPomodoros }) => {
 
         return (
             <li key={pastPomodoro.startTime}>
-                <em>{startDateFormatted}</em>: duration <strong>{duration} {pastPomodoro.didFinish ? '✅' : '❌'}</strong>
+                <em>{startDateFormatted}</em>: duration{' '}
+                <strong>
+                    {duration} {pastPomodoro.didFinish ? '✅' : '❌'}
+                </strong>
             </li>
         );
     });
 
-    return (
-        <ul>
-            {pastPomodorosLog}
-        </ul>
-    );
+    return <ul>{pastPomodorosLog}</ul>;
 };

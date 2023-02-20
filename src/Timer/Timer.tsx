@@ -10,10 +10,9 @@ const Timer: React.FC<Props> = ({ remainingSeconds }) => {
 
     return (
         <>
-            <p className='countdown'>{formattedSeconds}</p>
+            <p className="countdown">{formattedSeconds}</p>
         </>
     );
-
 };
 
 export default Timer;

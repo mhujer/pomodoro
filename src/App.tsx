@@ -40,7 +40,8 @@ function App() {
 
             // timer expired in tick()
             if (pomodoroTimer.startTime === null) {
-                if (intervalRef.current !== null) { // guarded by TS
+                // guarded by TS
+                if (intervalRef.current !== null) {
                     clearInterval(intervalRef.current);
                     intervalRef.current = null;
                 }
@@ -80,7 +81,7 @@ function App() {
     }, [title]);
 
     return (
-        <div className='container'>
+        <div className="container">
             <Timer remainingSeconds={remainingSeconds} />
 
             <StartStopButton

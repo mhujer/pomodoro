@@ -72,5 +72,4 @@ describe('PomodoroTimer', () => {
             { startTime: 1676714420000, endTime: 1676714423000, didFinish: false },
         ]);
     });
-
 });

@@ -13,16 +13,13 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 export class PomodoroTimer {
-
     private _startTime: number | null = null;
     private _latestNow: number;
 
     private _pastPomodoros: PastPomodoro[] = [];
     private defaultPomodoroDurationSeconds;
 
-    constructor(
-        defaultPomodoroDurationSeconds = POMODORO_DURATION_SECONDS,
-    ) {
+    constructor(defaultPomodoroDurationSeconds = POMODORO_DURATION_SECONDS) {
         this.defaultPomodoroDurationSeconds = defaultPomodoroDurationSeconds;
         this._latestNow = Date.now();
     }
@@ -72,7 +69,6 @@ export class PomodoroTimer {
     get startTime(): number | null {
         return this._startTime;
     }
-
 
     get latestNow(): number {
         return this._latestNow;

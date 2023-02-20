@@ -1,37 +1,37 @@
 html {
-  // from https://www.typescriptlang.org/
-  --code-font: 'Cascadia Mono-SemiLight', Menlo, Monaco, Consolas, monospace;
-  --body-font: 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue',
-  sans-serif;
-  --text-color: #333;
-  --background-color: #faf9f8;
+    // from https://www.typescriptlang.org/
+    --code-font: 'Cascadia Mono-SemiLight', Menlo, Monaco, Consolas, monospace;
+    --body-font: 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue',
+        sans-serif;
+    --text-color: #333;
+    --background-color: #faf9f8;
 
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-family: var(--body-font);
-  font-size: 16px;
-  line-height: 1.4;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--body-font);
+    font-size: 16px;
+    line-height: 1.4;
 }
 
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .container {
-  text-align: center;
+    text-align: center;
 }
 
 .countdown {
-  font-weight: bold;
-  font-size: 300%;
+    font-weight: bold;
+    font-size: 300%;
 }
 
 button {
-  font-size: 170%;
-  font-weight: bold;
-  padding: 1em;
-  box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.75);
+    font-size: 170%;
+    font-weight: bold;
+    padding: 1em;
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.75);
 }

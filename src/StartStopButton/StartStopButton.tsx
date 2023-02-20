@@ -7,7 +7,6 @@ interface Props {
 }
 
 const StartStopButton: React.FC<Props> = ({ isPomodoroActive, handleStart, handleStop }) => {
-
     if (isPomodoroActive) {
         return <button onClick={handleStop}>Stop!</button>;
     } else {

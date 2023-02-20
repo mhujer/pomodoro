@@ -12,6 +12,7 @@
         "@types/react-dom": "^18.0.11",
         "@types/react-test-renderer": "^18.0.0",
         "date-fns": "^2.29.3",
+        "prettier": "^2.8.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-scripts": "5.0.1",
@@ -20,8 +21,9 @@
         "typescript": "^4.9.5"
     },
     "scripts": {
+        "prettier": "prettier --write .",
         "eslint": "eslint src --max-warnings 0",
-        "ci-build": "eslint src --max-warnings 0 && react-scripts test --watchAll=false",
+        "ci-build": "eslint . --max-warnings 0 && prettier --check . && react-scripts test --watchAll=false",
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
