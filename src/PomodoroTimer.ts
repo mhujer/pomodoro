@@ -19,9 +19,28 @@ export class PomodoroTimer {
     private _pastPomodoros: PastPomodoro[] = [];
     private defaultPomodoroDurationSeconds;
 
-    constructor(defaultPomodoroDurationSeconds = POMODORO_DURATION_SECONDS) {
+    constructor(
+        startTime: number | null = null,
+        pastPomodoros: PastPomodoro[] = [],
+        defaultPomodoroDurationSeconds = POMODORO_DURATION_SECONDS,
+    ) {
+        // init from localStorage
+        this._pastPomodoros = pastPomodoros;
+        if (startTime !== null) {
+            // if there was an active pomodoro, void it
+            this._pastPomodoros.push({
+                startTime: startTime,
+                endTime: Date.now(),
+                didFinish: false,
+            });
+        }
+
         this.defaultPomodoroDurationSeconds = defaultPomodoroDurationSeconds;
         this._latestNow = Date.now();
+    }
+
+    public static handleLocalStorage() {
+
     }
 
     startTimer() {
