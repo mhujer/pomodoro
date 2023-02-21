@@ -4,6 +4,9 @@ exports[`renders App 1`] = `
 <div
   className="container"
 >
+  <h1>
+    🍅 Pomodoro Timer
+  </h1>
   <p
     className="countdown"
   >
@@ -14,5 +17,31 @@ exports[`renders App 1`] = `
   >
     Start!
   </button>
+  <footer>
+    <p>
+      Created by 
+      <a
+        href="https://www.martinhujer.cz/"
+      >
+        Martin Hujer
+      </a>
+       (
+      <a
+        href="https://github.com/mhujer/pomodoro"
+      >
+        view source-code
+      </a>
+      )
+    </p>
+    <p>
+      <a
+        href="https://en.wikipedia.org/wiki/Pomodoro_Technique"
+        rel="noreferrer"
+        target="_blank"
+      >
+        What is Pomodoro Technique?
+      </a>
+    </p>
+  </footer>
 </div>
 `;

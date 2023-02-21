@@ -82,6 +82,8 @@ function App() {
 
     return (
         <div className="container">
+            <h1>🍅 Pomodoro Timer</h1>
+
             <Timer remainingSeconds={remainingSeconds} />
 
             <StartStopButton
@@ -91,6 +93,18 @@ function App() {
             />
 
             <PastPomodoros pastPomodoros={pastPomodoros} />
+
+            <footer>
+                <p>
+                    Created by <a href="https://www.martinhujer.cz/">Martin Hujer</a> (
+                    <a href="https://github.com/mhujer/pomodoro">view source-code</a>)
+                </p>
+                <p>
+                    <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank" rel="noreferrer">
+                        What is Pomodoro Technique?
+                    </a>
+                </p>
+            </footer>
         </div>
     );
 }
