@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from 'vitest';
 import StartStopButton from './StartStopButton';
 import { fireEvent, render, screen } from '@testing-library/react';
 import renderer from 'react-test-renderer';
@@ -5,21 +6,21 @@ import renderer from 'react-test-renderer';
 describe('StartStopButton', () => {
     it('renderes isPomodoroActive=false', () => {
         const domTree = renderer
-            .create(<StartStopButton isPomodoroActive={false} handleStart={jest.fn()} handleStop={jest.fn()} />)
+            .create(<StartStopButton isPomodoroActive={false} handleStart={vi.fn()} handleStop={vi.fn()} />)
             .toJSON();
         expect(domTree).toMatchSnapshot();
     });
 
     it('renderes isPomodoroActive=true', () => {
         const domTree = renderer
-            .create(<StartStopButton isPomodoroActive={true} handleStart={jest.fn()} handleStop={jest.fn()} />)
+            .create(<StartStopButton isPomodoroActive={true} handleStart={vi.fn()} handleStop={vi.fn()} />)
             .toJSON();
         expect(domTree).toMatchSnapshot();
     });
 
     it('renders and clicks Start', () => {
-        const startClickSpy = jest.fn();
-        const stopClickSpy = jest.fn();
+        const startClickSpy = vi.fn();
+        const stopClickSpy = vi.fn();
 
         render(<StartStopButton isPomodoroActive={false} handleStart={startClickSpy} handleStop={stopClickSpy} />);
 
@@ -30,8 +31,8 @@ describe('StartStopButton', () => {
     });
 
     it('renders and clicks Stop', () => {
-        const startClickSpy = jest.fn();
-        const stopClickSpy = jest.fn();
+        const startClickSpy = vi.fn();
+        const stopClickSpy = vi.fn();
 
         render(<StartStopButton isPomodoroActive={true} handleStart={startClickSpy} handleStop={stopClickSpy} />);
 

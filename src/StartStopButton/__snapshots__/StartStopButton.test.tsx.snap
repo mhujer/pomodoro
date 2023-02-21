@@ -1,16 +1,16 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`StartStopButton renderes isPomodoroActive=false 1`] = `
+exports[`StartStopButton > renderes isPomodoroActive=false 1`] = `
 <button
-  onClick={[MockFunction]}
+  onClick={[MockFunction spy]}
 >
   Start!
 </button>
 `;
 
-exports[`StartStopButton renderes isPomodoroActive=true 1`] = `
+exports[`StartStopButton > renderes isPomodoroActive=true 1`] = `
 <button
-  onClick={[MockFunction]}
+  onClick={[MockFunction spy]}
 >
   Stop!
 </button>

@@ -1,16 +1,17 @@
 import { PomodoroTimer } from './PomodoroTimer';
+import { afterEach, beforeEach, describe, expect, vi, it } from 'vitest';
 
 describe('PomodoroTimer', () => {
     beforeEach(() => {
-        jest.useFakeTimers();
+        vi.useFakeTimers();
     });
 
     afterEach(() => {
-        jest.useRealTimers();
+        vi.useRealTimers();
     });
 
-    test('PomodoroTimer flow', () => {
-        jest.setSystemTime(new Date('2023-02-18 10:00:00 UTC'));
+    it('PomodoroTimer flow', () => {
+        vi.setSystemTime(new Date('2023-02-18 10:00:00 UTC'));
 
         const pomodoroTimer = new PomodoroTimer(10);
         expect(pomodoroTimer.isPomodoroActive()).toBe(false);
@@ -24,12 +25,12 @@ describe('PomodoroTimer', () => {
         expect(pomodoroTimer.getRemainingSeconds()).toBe(10);
         expect(pomodoroTimer.startTime).toBe(1676714400000);
 
-        jest.setSystemTime(new Date('2023-02-18 10:00:04 UTC'));
+        vi.setSystemTime(new Date('2023-02-18 10:00:04 UTC'));
         pomodoroTimer.tick();
         expect(pomodoroTimer.isPomodoroActive()).toBe(true);
         expect(pomodoroTimer.getRemainingSeconds()).toBe(6);
 
-        jest.setSystemTime(new Date('2023-02-18 10:00:10 UTC'));
+        vi.setSystemTime(new Date('2023-02-18 10:00:10 UTC'));
         pomodoroTimer.tick();
         expect(pomodoroTimer.isPomodoroActive()).toBe(false);
         expect(pomodoroTimer.getRemainingSeconds()).toBeNull();
@@ -43,7 +44,7 @@ describe('PomodoroTimer', () => {
         expect(pomodoroTimer.getRemainingSeconds()).toBe(10);
         expect(pomodoroTimer.startTime).toBe(1676714410000);
 
-        jest.setSystemTime(new Date('2023-02-18 10:00:20 UTC'));
+        vi.setSystemTime(new Date('2023-02-18 10:00:20 UTC'));
         pomodoroTimer.tick();
         expect(pomodoroTimer.isPomodoroActive()).toBe(false);
         expect(pomodoroTimer.getRemainingSeconds()).toBeNull();
@@ -58,7 +59,7 @@ describe('PomodoroTimer', () => {
         expect(pomodoroTimer.getRemainingSeconds()).toBe(10);
         expect(pomodoroTimer.startTime).toBe(1676714420000);
 
-        jest.setSystemTime(new Date('2023-02-18 10:00:23 UTC'));
+        vi.setSystemTime(new Date('2023-02-18 10:00:23 UTC'));
         pomodoroTimer.tick();
         expect(pomodoroTimer.isPomodoroActive()).toBe(true);
         expect(pomodoroTimer.getRemainingSeconds()).toBe(7);

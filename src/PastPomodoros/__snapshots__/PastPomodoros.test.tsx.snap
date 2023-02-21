@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`renders finished and void pomodoros 1`] = `
+exports[`PastPomodoros > renders finished and void pomodoros 1`] = `
 <ul>
   <li>
     <em>
@@ -29,7 +29,7 @@ exports[`renders finished and void pomodoros 1`] = `
 </ul>
 `;
 
-exports[`renders for 1 pomodoro 1`] = `
+exports[`PastPomodoros > renders for 1 pomodoro 1`] = `
 <ul>
   <li>
     <em>
@@ -46,4 +46,4 @@ exports[`renders for 1 pomodoro 1`] = `
 </ul>
 `;
 
-exports[`renders for no pomodoros 1`] = `null`;
+exports[`PastPomodoros > renders for no pomodoros 1`] = `null`;

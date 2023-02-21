@@ -1,44 +1,39 @@
 {
     "name": "pomodoro",
-    "version": "1.0.0",
     "private": true,
-    "dependencies": {
-        "@testing-library/jest-dom": "^5.16.5",
-        "@testing-library/react": "^13.4.0",
-        "@testing-library/user-event": "^13.5.0",
-        "@types/jest": "^27.5.2",
-        "@types/node": "^16.18.12",
-        "@types/react": "^18.0.28",
-        "@types/react-dom": "^18.0.11",
-        "@types/react-test-renderer": "^18.0.0",
-        "date-fns": "^2.29.3",
-        "prettier": "^2.8.4",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-scripts": "5.0.1",
-        "react-test-renderer": "^18.2.0",
-        "sass": "^1.58.3",
-        "typescript": "^4.9.5"
-    },
+    "version": "1.0.0",
+    "type": "module",
     "scripts": {
         "prettier": "prettier --write .",
         "eslint": "eslint src --max-warnings 0",
-        "ci-build": "eslint . --max-warnings 0 && prettier --check . && react-scripts test --watchAll=false",
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "test": "vitest",
+        "ci-build": "eslint . --max-warnings 0 && prettier --check . && vitest --run",
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
     },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
+    "dependencies": {
+        "date-fns": "^2.29.3",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "sass": "^1.58.3"
+    },
+    "devDependencies": {
+        "@testing-library/jest-dom": "^5.16.5",
+        "@testing-library/react": "^14.0.0",
+        "@types/react": "^18.0.27",
+        "@types/react-dom": "^18.0.10",
+        "@types/react-test-renderer": "^18.0.0",
+        "@typescript-eslint/eslint-plugin": "^5.53.0",
+        "@typescript-eslint/parser": "^5.53.0",
+        "@vitejs/plugin-react": "^3.1.0",
+        "eslint": "^8.34.0",
+        "eslint-plugin-react": "^7.32.2",
+        "jsdom": "^21.1.0",
+        "prettier": "^2.8.4",
+        "react-test-renderer": "^18.2.0",
+        "typescript": "^4.9.3",
+        "vite": "^4.1.0",
+        "vitest": "^0.28.5"
     }
 }

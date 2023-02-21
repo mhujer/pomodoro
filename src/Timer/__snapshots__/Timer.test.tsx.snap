@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Timer renders timer for 0 seconds 1`] = `
+exports[`Timer > renders timer for 0 seconds 1`] = `
 <p
   className="countdown"
 >
@@ -8,7 +8,7 @@ exports[`Timer renders timer for 0 seconds 1`] = `
 </p>
 `;
 
-exports[`Timer renders timer for 60 seconds 1`] = `
+exports[`Timer > renders timer for 60 seconds 1`] = `
 <p
   className="countdown"
 >
@@ -16,7 +16,7 @@ exports[`Timer renders timer for 60 seconds 1`] = `
 </p>
 `;
 
-exports[`Timer renders timer for 1500 seconds (25 min) 1`] = `
+exports[`Timer > renders timer for 1500 seconds (25 min) 1`] = `
 <p
   className="countdown"
 >

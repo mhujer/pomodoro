@@ -5,7 +5,8 @@ export interface PastPomodoro {
 }
 
 let POMODORO_DURATION_SECONDS: number;
-// @see https://webpack.js.org/guides/production/#specify-the-mode
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 if (process.env.NODE_ENV === 'production') {
     POMODORO_DURATION_SECONDS = 25 * 60;
 } else {
