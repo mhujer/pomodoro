@@ -1,7 +1,7 @@
 import { PastPomodoros } from './PastPomodoros';
 import renderer from 'react-test-renderer';
-import { PastPomodoro } from '../PomodoroTimer';
 import { describe, it } from 'vitest';
+import { PastPomodoro } from '../pomodoro-reducer';
 
 describe('PastPomodoros', () => {
     it('renders for no pomodoros', () => {

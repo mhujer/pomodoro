@@ -1,98 +1,90 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import './App.scss';
 import ding from '../src/sounds/ding.mp3'; // https://freesound.org/people/domrodrig/sounds/116779/
 import Timer from './Timer/Timer';
 import { formatPomodoroTime } from './timeFormatUtils';
-import { PastPomodoro, PomodoroTimer } from './PomodoroTimer';
 import { PastPomodoros } from './PastPomodoros/PastPomodoros';
 import StartStopButton from './StartStopButton/StartStopButton';
+import { useImmerReducer } from 'use-immer';
+import { getInitialState, POMODORO_DURATION_SECONDS, pomodoroReducer } from './pomodoro-reducer';
 
 const defaultTitle = document.title;
 
-function App() {
-    // @ts-expect-error startTime state is required to trigger rerender
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [startTime, setStartTime] = useState<number | null>(null);
-    // @ts-expect-error now state is required to trigger rerender
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [now, setNow] = useState<number | null>(null);
-    const [pastPomodoros, setPastPomodoros] = useState<PastPomodoro[]>([]);
-    const intervalRef = useRef<number | null>(null);
+const App: React.FC = () => {
+    const [pomodoroState, dispatch] = useImmerReducer(pomodoroReducer, getInitialState());
 
-    const pomodoroTimerRef = useRef<PomodoroTimer>(new PomodoroTimer());
-    const pomodoroTimer = pomodoroTimerRef.current;
-
-    function handleStart(): void {
-        pomodoroTimer.startTimer();
-
-        setStartTime(pomodoroTimer.startTime);
-        setNow(pomodoroTimer.latestNow);
-
-        if (intervalRef.current !== null) {
-            clearInterval(intervalRef.current);
+    // set next tick timer
+    useEffect(() => {
+        let ticketTimerId: number | undefined;
+        if (pomodoroState.isPomodoroActive) {
+            ticketTimerId = window.setTimeout(() => {
+                dispatch({
+                    type: 'TICK',
+                    now: Date.now(),
+                });
+            }, 200);
         }
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        intervalRef.current = window.setInterval(async () => {
-            pomodoroTimer.tick();
 
-            setStartTime(pomodoroTimer.startTime);
-            setNow(pomodoroTimer.latestNow); // to trigger rerender
+        return () => {
+            if (ticketTimerId !== undefined) {
+                clearTimeout(ticketTimerId);
+            }
+        };
+    }, [pomodoroState]);
 
-            // timer expired in tick()
-            if (pomodoroTimer.startTime === null) {
-                // guarded by TS
-                if (intervalRef.current !== null) {
-                    clearInterval(intervalRef.current);
-                    intervalRef.current = null;
-                }
-
+    // play jingle
+    useEffect(() => {
+        if (pomodoroState.shouldPlayJingle) {
+            void (async () => {
                 const myAudio = new Audio(ding);
                 await myAudio.play();
-
-                setPastPomodoros(pomodoroTimer.pastPomodoros);
-            }
-        }, 100);
-    }
-
-    function handleStop(): void {
-        pomodoroTimer.stopTimer();
-
-        if (intervalRef.current !== null) {
-            clearInterval(intervalRef.current);
+            })();
+            dispatch({
+                type: 'JINGLE_PLAYED',
+            });
         }
-
-        setStartTime(pomodoroTimer.startTime);
-        setNow(pomodoroTimer.latestNow);
-        setPastPomodoros(pomodoroTimer.pastPomodoros);
-    }
-
-    let remainingSeconds = pomodoroTimer.getRemainingSeconds();
-    let title: string;
-    if (remainingSeconds !== null) {
-        title = `${formatPomodoroTime(remainingSeconds)} ${defaultTitle}`;
-    } else {
-        remainingSeconds = pomodoroTimer.getDefaultPomodoroDurationSeconds();
-        title = defaultTitle;
-    }
+    }, [pomodoroState.shouldPlayJingle]);
 
     // update title
     useEffect(() => {
-        document.title = title;
-    }, [title]);
+        if (pomodoroState.remainingSeconds !== null) {
+            document.title = `${formatPomodoroTime(pomodoroState.remainingSeconds)} ${defaultTitle}`;
+        } else {
+            document.title = defaultTitle;
+        }
+    }, [pomodoroState.remainingSeconds]);
+
+    function handleStart(): void {
+        dispatch({
+            type: 'START',
+            now: Date.now(),
+        });
+    }
+
+    function handleStop(): void {
+        dispatch({
+            type: 'STOP',
+            now: Date.now(),
+        });
+    }
 
     return (
         <div className="container">
             <h1>🍅 Pomodoro Timer</h1>
 
-            <Timer remainingSeconds={remainingSeconds} />
+            <Timer
+                remainingSeconds={
+                    pomodoroState.remainingSeconds !== null ? pomodoroState.remainingSeconds : POMODORO_DURATION_SECONDS
+                }
+            />
 
             <StartStopButton
-                isPomodoroActive={pomodoroTimer.isPomodoroActive()}
+                isPomodoroActive={pomodoroState.isPomodoroActive}
                 handleStart={handleStart}
                 handleStop={handleStop}
             />
 
-            <PastPomodoros pastPomodoros={pastPomodoros} />
+            <PastPomodoros pastPomodoros={pomodoroState.pastPomodoros} />
 
             <footer>
                 <p>
@@ -107,6 +99,6 @@ function App() {
             </footer>
         </div>
     );
-}
+};
 
 export default App;

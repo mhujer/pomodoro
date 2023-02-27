@@ -1,13 +1,15 @@
 import React from 'react';
 import { formatPomodoroTime } from '../timeFormatUtils';
 import { lightFormat } from 'date-fns';
-import { PastPomodoro } from '../PomodoroTimer';
+import { PastPomodoro } from '../pomodoro-reducer';
 
 interface Props {
     pastPomodoros: PastPomodoro[];
 }
 
-export const PastPomodoros: React.FC<Props> = ({ pastPomodoros }) => {
+export const PastPomodoros: React.FC<Props> = ({ pastPomodoros: pastPomodorosInput }) => {
+    const pastPomodoros = [...pastPomodorosInput];
+
     // no pomodoros
     if (pastPomodoros.length === 0) {
         return null;
