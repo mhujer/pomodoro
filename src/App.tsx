@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import './App.scss';
+import tomato from './images/tomato.svg';
 import ding from '../src/sounds/ding.mp3'; // https://freesound.org/people/domrodrig/sounds/116779/
 import Timer from './Timer/Timer';
 import { formatPomodoroTime } from './timeFormatUtils';
@@ -70,7 +71,9 @@ const App: React.FC = () => {
 
     return (
         <div className="container">
-            <h1>🍅 Pomodoro Timer</h1>
+            <h1>
+                <img src={tomato} /> Pomodoro Timer
+            </h1>
 
             <Timer
                 remainingSeconds={
