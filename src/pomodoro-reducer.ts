@@ -118,3 +118,43 @@ export const getInitialState = (): PomodoroState => {
         pastPomodoros: [],
     };
 };
+
+export const loadInitialStateFromLocalStorage = (): PomodoroState => {
+    const state = getInitialState();
+
+    const pastPomodoros = loadFromLocalStorage<PastPomodoro[]>('pastPomodoros');
+    if (pastPomodoros !== null) {
+        state.pastPomodoros = pastPomodoros;
+    }
+
+    // if there was pomodoro running before, void it
+    const startTime = loadFromLocalStorage<number | null>('startTime');
+    if (startTime !== null && pastPomodoros !== null && pastPomodoros.length > 0) {
+        const now = Date.now();
+
+        let endTime;
+        if ((now - startTime) / 1000 > POMODORO_DURATION_SECONDS) {
+            // if the page was closed longer than pomodoro duration, use max duration
+            endTime = startTime + POMODORO_DURATION_SECONDS * 1000;
+        } else {
+            // otherwise use real duration
+            endTime = now;
+        }
+
+        pastPomodoros.push({
+            startTime: startTime,
+            endTime: endTime,
+            didFinish: false,
+        });
+    }
+
+    return state;
+};
+
+const loadFromLocalStorage = <T>(key: string): T | null => {
+    const data = localStorage.getItem(key);
+    if (data === null) {
+        return null;
+    }
+    return JSON.parse(data) as T | null;
+};

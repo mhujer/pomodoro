@@ -20,7 +20,10 @@ export const PastPomodoros: React.FC<Props> = ({ pastPomodoros: pastPomodorosInp
         return b.startTime - a.startTime;
     });
 
-    const pastPomodorosLog = pastPomodoros.map((pastPomodoro) => {
+    // display just last 20 pomodoros
+    const pastPomodorosToDisplay = pastPomodoros.slice(0, 20);
+
+    const pastPomodorosLog = pastPomodorosToDisplay.map((pastPomodoro) => {
         const duration = formatPomodoroTime((pastPomodoro.endTime - pastPomodoro.startTime) / 1000);
         const startDateFormatted = lightFormat(new Date(pastPomodoro.startTime), 'yyyy-MM-dd HH:mm:ss');
 

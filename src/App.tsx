@@ -7,12 +7,12 @@ import { formatPomodoroTime } from './timeFormatUtils';
 import { PastPomodoros } from './PastPomodoros/PastPomodoros';
 import StartStopButton from './StartStopButton/StartStopButton';
 import { useImmerReducer } from 'use-immer';
-import { getInitialState, POMODORO_DURATION_SECONDS, pomodoroReducer } from './pomodoro-reducer';
+import { loadInitialStateFromLocalStorage, POMODORO_DURATION_SECONDS, pomodoroReducer } from './pomodoro-reducer';
 
 const defaultTitle = document.title;
 
 const App: React.FC = () => {
-    const [pomodoroState, dispatch] = useImmerReducer(pomodoroReducer, getInitialState());
+    const [pomodoroState, dispatch] = useImmerReducer(pomodoroReducer, loadInitialStateFromLocalStorage());
 
     // set next tick timer
     useEffect(() => {
@@ -54,6 +54,12 @@ const App: React.FC = () => {
             document.title = defaultTitle;
         }
     }, [pomodoroState.remainingSeconds]);
+
+    // save data to localStorage
+    useEffect(() => {
+        localStorage.setItem('pastPomodoros', JSON.stringify(pomodoroState.pastPomodoros));
+        localStorage.setItem('startTime', JSON.stringify(pomodoroState.startTime));
+    }, [pomodoroState.pastPomodoros, pomodoroState.startTime]);
 
     function handleStart(): void {
         dispatch({
